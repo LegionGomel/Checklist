@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE481DC825EA2A95006D3277 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE481DC725EA2A95006D3277 /* README.md */; };
+		CE481DCC25EA4306006D3277 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE481DCB25EA4306006D3277 /* AddItemTableViewController.swift */; };
 		CE4884C725EA0FA1009A0ECE /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4884C625EA0FA1009A0ECE /* ChecklistItem.swift */; };
 		CE4884CA25EA1CD1009A0ECE /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4884C925EA1CD1009A0ECE /* TodoList.swift */; };
 		CEC5387D25E828DE002E506F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC5387C25E828DE002E506F /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		CE481DC725EA2A95006D3277 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CE481DCB25EA4306006D3277 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
 		CE4884C625EA0FA1009A0ECE /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		CE4884C925EA1CD1009A0ECE /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		CEC5387925E828DE002E506F /* CheckList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 				CEC5387C25E828DE002E506F /* AppDelegate.swift */,
 				CEC5387E25E828DE002E506F /* SceneDelegate.swift */,
 				CEC5388025E828DE002E506F /* ChecklistViewController.swift */,
+				CE481DCB25EA4306006D3277 /* AddItemTableViewController.swift */,
 				CE4884C625EA0FA1009A0ECE /* ChecklistItem.swift */,
 				CE4884C925EA1CD1009A0ECE /* TodoList.swift */,
 				CEC5388225E828DE002E506F /* Main.storyboard */,
@@ -149,6 +152,7 @@
 			files = (
 				CE4884CA25EA1CD1009A0ECE /* TodoList.swift in Sources */,
 				CEC5388125E828DE002E506F /* ChecklistViewController.swift in Sources */,
+				CE481DCC25EA4306006D3277 /* AddItemTableViewController.swift in Sources */,
 				CEC5387D25E828DE002E506F /* AppDelegate.swift in Sources */,
 				CEC5387F25E828DE002E506F /* SceneDelegate.swift in Sources */,
 				CE4884C725EA0FA1009A0ECE /* ChecklistItem.swift in Sources */,
