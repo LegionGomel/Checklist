@@ -8,38 +8,30 @@
 import UIKit
 
 class ChecklistViewController: UITableViewController {
+    var toDoList: TodoList
+    
+    required init?(coder: NSCoder) {
+        toDoList = TodoList()
+        super .init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-    // function to count ruts for tableView
+    // function to count items for tableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1000
+        toDoList.todos.count
     }
     
     // function to actually return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
         if let label = cell.viewWithTag(1000) as? UILabel {
-            let num = indexPath.row % 5
-            switch num {
-            case 0:
-                label.text = "Take a jog"
-            case 1:
-                label.text = "Watch a movie"
-            case 2:
-                label.text = "Code an app"
-            case 3:
-                label.text = "Walk a dog"
-            case 4:
-                label.text = "Study design patterns"
-            default:
-                label.text = ""
+            label.text = toDoList.todos[indexPath.row].text
             }
-        }
-        
+        configureCheckmark(for: cell, at: indexPath)
         return cell
     }
     
@@ -47,16 +39,21 @@ class ChecklistViewController: UITableViewController {
         
         // Unselect checkmark when tap on cell
         if let cell = tableView.cellForRow(at: indexPath) {
-            if cell.accessoryType == .none {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
+            configureCheckmark(for: cell, at: indexPath)
+            // Deselect row after tap on it
+            tableView.deselectRow(at: indexPath, animated: true)
         }
-        // Deselect row after tap on it
-        tableView.deselectRow(at: indexPath, animated: true)
     }
-
-
+    
+    // Checkmark configuration function
+    func configureCheckmark (for cell: UITableViewCell, at indexPath: IndexPath) {
+        let toDoItem = toDoList.todos[indexPath.row]
+        if toDoItem.checked {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .checkmark
+        }
+        toDoItem.checked = !toDoItem.checked
+    }
 }
 
