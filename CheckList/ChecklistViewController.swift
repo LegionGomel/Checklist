@@ -56,6 +56,12 @@ class ChecklistViewController: UITableViewController {
         }
     }
     
+    // remove item when user press delete after swipe
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        toDoList.todos.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         if let label = cell.viewWithTag(1000) as? UILabel {
             label.text = item.text
