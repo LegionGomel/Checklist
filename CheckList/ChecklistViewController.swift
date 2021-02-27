@@ -28,10 +28,9 @@ class ChecklistViewController: UITableViewController {
     // function to actually return cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
-        if let label = cell.viewWithTag(1000) as? UILabel {
-            label.text = toDoList.todos[indexPath.row].text
-            }
-        configureCheckmark(for: cell, at: indexPath)
+        let item = toDoList.todos[indexPath.row]
+        configureText(for: cell, with: item)
+        configureCheckmark(for: cell, with: item)
         return cell
     }
     
@@ -39,21 +38,27 @@ class ChecklistViewController: UITableViewController {
         
         // Unselect checkmark when tap on cell
         if let cell = tableView.cellForRow(at: indexPath) {
-            configureCheckmark(for: cell, at: indexPath)
+            let item = toDoList.todos[indexPath.row]
+            configureCheckmark(for: cell, with: item)
             // Deselect row after tap on it
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
+    func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
+        if let label = cell.viewWithTag(1000) as? UILabel {
+            label.text = item.text
+            }
+    }
+    
     // Checkmark configuration function
-    func configureCheckmark (for cell: UITableViewCell, at indexPath: IndexPath) {
-        let toDoItem = toDoList.todos[indexPath.row]
-        if toDoItem.checked {
-            cell.accessoryType = .none
-        } else {
+    func configureCheckmark (for cell: UITableViewCell, with item: ChecklistItem) {
+        if item.checked {
             cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
         }
-        toDoItem.checked = !toDoItem.checked
+        item.toggleChecked()
     }
 }
 
