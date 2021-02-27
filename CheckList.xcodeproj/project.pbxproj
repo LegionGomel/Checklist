@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE481DC825EA2A95006D3277 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CE481DC725EA2A95006D3277 /* README.md */; };
 		CE4884C725EA0FA1009A0ECE /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4884C625EA0FA1009A0ECE /* ChecklistItem.swift */; };
 		CE4884CA25EA1CD1009A0ECE /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4884C925EA1CD1009A0ECE /* TodoList.swift */; };
 		CEC5387D25E828DE002E506F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC5387C25E828DE002E506F /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE481DC725EA2A95006D3277 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE4884C625EA0FA1009A0ECE /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		CE4884C925EA1CD1009A0ECE /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		CEC5387925E828DE002E506F /* CheckList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,7 @@
 		CEC5387025E828DE002E506F = {
 			isa = PBXGroup;
 			children = (
+				CE481DC725EA2A95006D3277 /* README.md */,
 				CEC5387B25E828DE002E506F /* CheckList */,
 				CEC5387A25E828DE002E506F /* Products */,
 			);
@@ -132,6 +135,7 @@
 			files = (
 				CEC5388925E828DF002E506F /* LaunchScreen.storyboard in Resources */,
 				CEC5388625E828DF002E506F /* Assets.xcassets in Resources */,
+				CE481DC825EA2A95006D3277 /* README.md in Resources */,
 				CEC5388425E828DE002E506F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
