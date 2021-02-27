@@ -77,5 +77,31 @@ class ChecklistViewController: UITableViewController {
         }
         item.toggleChecked()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addItemSegue" {
+            if let addItemVIewController = segue.destination as? AddItemTableViewController {
+                addItemVIewController.delegate = self
+            }
+        }
+    }
 }
+
+extension ChecklistViewController: addItemViewControllerDelegate {
+    
+    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem) {
+        navigationController?.popViewController(animated: true)
+        let rowIndex = toDoList.todos.count
+        toDoList.todos.append(item)
+        let indexPath = IndexPath(row: rowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
+}
+
 

@@ -7,8 +7,15 @@
 
 import UIKit
 
-class AddItemTableViewController: UITableViewController {
+protocol addItemViewControllerDelegate: class {
+    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController)
+    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+}
 
+class AddItemTableViewController: UITableViewController {
+    
+    weak var delegate: addItemViewControllerDelegate?
+    
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -26,10 +33,17 @@ class AddItemTableViewController: UITableViewController {
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func done(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        let item = ChecklistItem()
+        if let textFieldText = textField.text {
+            item.text = textFieldText
+        }
+        item.checked = false
+        delegate?.addItemViewController(self, didFinishAdding: item)
     }
     
     
