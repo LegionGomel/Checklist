@@ -16,27 +16,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="693-mM-4zj">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="693-mM-4zj" customClass="ChecklistTableViewCell" customModule="CheckList" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="693-mM-4zj" id="gA8-h9-sRY">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="351" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAS-MA-CDJ">
-                                            <rect key="frame" x="20" y="11" width="330" height="21"/>
+                                            <rect key="frame" x="46" y="11.5" width="41.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="√" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3n-oq-WFZ">
+                                            <rect key="frame" x="20" y="10" width="15" height="24.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="RAS-MA-CDJ" secondAttribute="bottom" priority="750" constant="11.5" id="1rU-MG-gvV"/>
-                                        <constraint firstItem="RAS-MA-CDJ" firstAttribute="leading" secondItem="gA8-h9-sRY" secondAttribute="leading" constant="20" symbolic="YES" id="4lb-Jr-M2k"/>
+                                        <constraint firstItem="RAS-MA-CDJ" firstAttribute="leading" secondItem="gA8-h9-sRY" secondAttribute="leading" constant="46" id="4lb-Jr-M2k"/>
                                         <constraint firstItem="RAS-MA-CDJ" firstAttribute="top" secondItem="gA8-h9-sRY" secondAttribute="top" priority="750" constant="11" id="Fxi-OO-x8h"/>
-                                        <constraint firstAttribute="trailing" secondItem="RAS-MA-CDJ" secondAttribute="trailing" constant="20" symbolic="YES" id="JDc-xH-sP8"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RAS-MA-CDJ" secondAttribute="trailing" constant="20" symbolic="YES" id="JDc-xH-sP8"/>
+                                        <constraint firstItem="R3n-oq-WFZ" firstAttribute="centerY" secondItem="gA8-h9-sRY" secondAttribute="centerY" id="MNG-RW-nJt"/>
+                                        <constraint firstItem="R3n-oq-WFZ" firstAttribute="centerY" secondItem="RAS-MA-CDJ" secondAttribute="centerY" id="Piw-Vi-UbP"/>
+                                        <constraint firstItem="R3n-oq-WFZ" firstAttribute="leading" secondItem="gA8-h9-sRY" secondAttribute="leadingMargin" id="f2g-aO-gnY"/>
+                                        <constraint firstItem="RAS-MA-CDJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R3n-oq-WFZ" secondAttribute="trailing" constant="8" symbolic="YES" id="fTr-Gq-VP0"/>
+                                        <constraint firstItem="R3n-oq-WFZ" firstAttribute="top" secondItem="gA8-h9-sRY" secondAttribute="topMargin" constant="-1" id="yVr-Xm-RNe"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkmarkLabel" destination="R3n-oq-WFZ" id="GxI-Ct-f9s"/>
+                                    <outlet property="todoTextLabel" destination="RAS-MA-CDJ" id="VsP-DX-Ess"/>
+                                    <segue destination="AK0-pg-zns" kind="show" identifier="editItemSegue" trigger="accessoryAction" id="BaA-82-2Yk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,19 +63,19 @@
                     <navigationItem key="navigationItem" title="Checklists" id="LOo-NT-Fls">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="X6w-Wp-q8d">
                             <connections>
-                                <segue destination="AK0-pg-zns" kind="show" identifier="addItemSegue" id="JA5-BV-ELI"/>
+                                <segue destination="AK0-pg-zns" kind="show" identifier="addItemSegue" id="YsZ-va-Ho1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kV-59-wL9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="138"/>
+            <point key="canvasLocation" x="386.95652173913044" y="137.94642857142856"/>
         </scene>
         <!--new item-->
         <scene sceneID="uCm-de-CaM">
             <objects>
-                <tableViewController id="AK0-pg-zns" customClass="AddItemTableViewController" customModule="CheckList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="AK0-pg-zns" customClass="ItemDetailVC" customModule="CheckList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="RgM-Vc-NuZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,7 +122,7 @@
                                 <action selector="cancel:" destination="AK0-pg-zns" id="64f-Kt-y6l"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Add" id="2Ry-m9-YeK">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="2Ry-m9-YeK">
                             <connections>
                                 <action selector="done:" destination="AK0-pg-zns" id="ICN-jD-7IT"/>
                             </connections>
@@ -141,6 +157,9 @@
             <point key="canvasLocation" x="-407.24637681159425" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="BaA-82-2Yk"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

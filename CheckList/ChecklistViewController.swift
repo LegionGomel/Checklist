@@ -63,43 +63,65 @@ class ChecklistViewController: UITableViewController {
     }
     
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
-        if let label = cell.viewWithTag(1000) as? UILabel {
-            label.text = item.text
+        if let checkmarkCell = cell as? ChecklistTableViewCell {
+            checkmarkCell.todoTextLabel.text = item.text
             }
     }
     
     // Checkmark configuration function
     func configureCheckmark (for cell: UITableViewCell, with item: ChecklistItem) {
+        guard let checkmarkCell = cell as? ChecklistTableViewCell else {
+            return
+        }
         if item.checked {
-            cell.accessoryType = .checkmark
+            checkmarkCell.checkmarkLabel.text = "√"
         } else {
-            cell.accessoryType = .none
+            checkmarkCell.checkmarkLabel.text = ""
         }
         item.toggleChecked()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addItemSegue" {
-            if let addItemVIewController = segue.destination as? AddItemTableViewController {
-                addItemVIewController.delegate = self
+            if let addItemViewController = segue.destination as? ItemDetailVC {
+                addItemViewController.delegate = self
+                addItemViewController.toDoList = toDoList
+            }
+        } else if segue.identifier == "editItemSegue" {
+            if let addItemVIewController = segue.destination as? ItemDetailVC {
+                if let cell = sender as? UITableViewCell,
+                   let indexPath = tableView.indexPath(for: cell) {
+                    let item = toDoList.todos[indexPath.row]
+                    addItemVIewController.itemToEdit = item
+                    addItemVIewController.delegate = self
+                }
             }
         }
     }
 }
 
-extension ChecklistViewController: addItemViewControllerDelegate {
+extension ChecklistViewController: itemDetailVCDelegate {
     
-    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController) {
+    func itemDetailVCDidCancel(_ controller: ItemDetailVC) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem) {
+    func addItemVC(_ controller: ItemDetailVC, didFinishAdding item: ChecklistItem) {
         navigationController?.popViewController(animated: true)
-        let rowIndex = toDoList.todos.count
-        toDoList.todos.append(item)
+        let rowIndex = toDoList.todos.count - 1
         let indexPath = IndexPath(row: rowIndex, section: 0)
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
+    func editItemVC(_ controller: ItemDetailVC, didFinishEditing item: ChecklistItem) {
+        if let index = toDoList.todos.firstIndex(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+            configureText(for: cell, with: item)
+            }
+        }
+        navigationController?.popViewController(animated: true)
     }
     
 }

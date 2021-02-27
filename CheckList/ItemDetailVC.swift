@@ -7,14 +7,17 @@
 
 import UIKit
 
-protocol addItemViewControllerDelegate: class {
-    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController)
-    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+protocol itemDetailVCDelegate: class {
+    func itemDetailVCDidCancel(_ controller: ItemDetailVC)
+    func addItemVC(_ controller: ItemDetailVC, didFinishAdding item: ChecklistItem)
+    func editItemVC(_ controller: ItemDetailVC, didFinishEditing item: ChecklistItem)
 }
 
-class AddItemTableViewController: UITableViewController {
+class ItemDetailVC: UITableViewController {
     
-    weak var delegate: addItemViewControllerDelegate?
+    weak var delegate: itemDetailVCDelegate?
+    weak var toDoList: TodoList?
+    weak var itemToEdit: ChecklistItem?
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -24,6 +27,11 @@ class AddItemTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         textField.delegate = self
+        if let item = itemToEdit {
+            title = "Edit item"
+            textField.text = item.text
+            addButton.isEnabled = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,18 +40,23 @@ class AddItemTableViewController: UITableViewController {
     }
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.itemDetailVCDidCancel(self)
     }
     
     @IBAction func done(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        let item = ChecklistItem()
-        if let textFieldText = textField.text {
-            item.text = textFieldText
+        if let item = itemToEdit,
+           let text = textField.text {
+            item.text = text
+            delegate?.editItemVC(self, didFinishEditing: item)
+        } else {
+            if let item = toDoList?.newToDo() {
+                if let textFieldText = textField.text {
+                    item.text = textFieldText
+                }
+                item.checked = false
+                delegate?.addItemVC(self, didFinishAdding: item)
+            }
         }
-        item.checked = false
-        delegate?.addItemViewController(self, didFinishAdding: item)
     }
     
     
@@ -63,7 +76,7 @@ class AddItemTableViewController: UITableViewController {
     }
 }
 
-extension AddItemTableViewController: UITextFieldDelegate {
+extension ItemDetailVC: UITextFieldDelegate {
     
     // function for dismiss keyboard, also textField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
