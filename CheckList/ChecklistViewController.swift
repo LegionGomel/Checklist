@@ -20,6 +20,17 @@ class ChecklistViewController: UITableViewController {
         
     }
     
+    @IBAction func addItem(_ sender: UIBarButtonItem) {
+        let newRowIndex = toDoList.todos.count
+        
+        // Create new todo item and add a row for it to tableview
+        _ = toDoList.newToDo()
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        
+    }
+    
     // function to count items for tableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         toDoList.todos.count

@@ -67,11 +67,11 @@
 				CEC5387E25E828DE002E506F /* SceneDelegate.swift */,
 				CEC5388025E828DE002E506F /* ChecklistViewController.swift */,
 				CE4884C625EA0FA1009A0ECE /* ChecklistItem.swift */,
+				CE4884C925EA1CD1009A0ECE /* TodoList.swift */,
 				CEC5388225E828DE002E506F /* Main.storyboard */,
 				CEC5388525E828DF002E506F /* Assets.xcassets */,
 				CEC5388725E828DF002E506F /* LaunchScreen.storyboard */,
 				CEC5388A25E828DF002E506F /* Info.plist */,
-				CE4884C925EA1CD1009A0ECE /* TodoList.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
