@@ -10,6 +10,8 @@ import UIKit
 class AddItemTableViewController: UITableViewController {
 
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +28,10 @@ class AddItemTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func done(_ sender: UIBarButtonItem) {
+    @IBAction func done(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -48,10 +51,25 @@ class AddItemTableViewController: UITableViewController {
 
 extension AddItemTableViewController: UITextFieldDelegate {
     
-    // function for dismiss keyboard, also disable first responder for textField
+    // function for dismiss keyboard, also textField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+    
+    // method to manipulate what the user is typing
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let oldText = textField.text,
+              let stringRange = Range(range, in: oldText) else {
+            return false
+        }
+        let newText = oldText.replacingCharacters(in: stringRange, with: string)
+        if newText.isEmpty {
+            addButton.isEnabled = false
+        } else {
+            addButton.isEnabled = true
+        }
+        return true
     }
     
 }
