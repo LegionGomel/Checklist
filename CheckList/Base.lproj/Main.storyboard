@@ -61,11 +61,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Checklists" id="LOo-NT-Fls">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="X6w-Wp-q8d">
-                            <connections>
-                                <segue destination="AK0-pg-zns" kind="show" identifier="addItemSegue" id="YsZ-va-Ho1"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="X6w-Wp-q8d">
+                                <connections>
+                                    <segue destination="AK0-pg-zns" kind="show" identifier="addItemSegue" id="YsZ-va-Ho1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="T09-J6-fVy">
+                                <connections>
+                                    <action selector="deleteItems:" destination="Ufg-3K-4MR" id="2cE-lT-DR4"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kV-59-wL9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
